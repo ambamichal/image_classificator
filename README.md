@@ -1,0 +1,2 @@
+# image_classificator
+Magisterska
