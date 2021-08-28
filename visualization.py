@@ -1,6 +1,6 @@
 from tensorflow.keras.models import load_model
 
-model = load_model('output/model_vis_test.hdf5')
+model = load_model('output/model_28_08_2021_20_44_convnet2_lr0.0001_final.hdf5')
 model.summary()
 
 img_path = 'C:/Users/AmbruszkiewM/PycharmProjects/klasyfikator_tf/images/test/surfboard/44.channel-islands-fish-surfboard-futures-blue_a.jpg'
@@ -46,9 +46,9 @@ plt.show()
 
 layer_names = []
 for layer in model.layers[:8]:
-    layer_names.append(layer_names)
+    layer_names.append(layer.name)
 
-images_per_row = 18
+images_per_row = 16
 
 for layer_name, layer_activation in zip(layer_names, activations):
 
@@ -64,7 +64,7 @@ for layer_name, layer_activation in zip(layer_names, activations):
         for row in range(images_per_row):
             channel_image = layer_activation[0, :, :, col * images_per_row + row]
             channel_image -= channel_image.mean()
-            channel_image /= channel_image.std()
+            channel_image /= np.std(channel_image)
             channel_image *= 64
             channel_image += 128
             channel_image = np.clip(channel_image, 0, 255).astype('uint8')

@@ -5,6 +5,7 @@ import pandas as pd
 import argparse
 import os
 
+
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -13,17 +14,17 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import load_model
 
 ap = argparse.ArgumentParser()
-ap.add_argument('-d', '--dataset', required=True, help='type od images: [train, valid, test]')
+ap.add_argument('-d', '--data', required=True, help='type od images: [train, valid, test]')
 ap.add_argument('-m', '--model', required=False, help='path to model')
 args = vars(ap.parse_args())
 
-INPUT_SHAPE = (150, 150, 3)
+INPUT_SHAPE = (224, 224, 3)
 
-datagen = ImageDataGenerator(rescale=1. /255.)
+data = ImageDataGenerator(rescale=1. /255.)
 
-generator = datagen.flow_from_directory(
+generator = data.flow_from_directory(
     directory=args['dataset'],
-    target_size=(150, 150),
+    target_size=(224, 224),
     batch_size=1,
     class_mode='binary',
     shuffle=False
@@ -59,7 +60,7 @@ for error in errors:
     print(error)
 
 #uruchomienie
-# python predict.py -d images\test -m output\model_**_**_****.hdfs5
+# python inference.py -d images\test -m output\model_**_**_****.hdf5
 
 
 
