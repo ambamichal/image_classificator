@@ -64,6 +64,7 @@ for layer_name, layer_activation in zip(layer_names, activations):
         for row in range(images_per_row):
             channel_image = layer_activation[0, :, :, col * images_per_row + row]
             channel_image -= channel_image.mean()
+            np.seterr(divide='ignore', invalid='ignore')
             channel_image /= np.std(channel_image)
             channel_image *= 64
             channel_image += 128
