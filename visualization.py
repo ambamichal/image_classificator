@@ -3,11 +3,8 @@ from tensorflow.keras.models import load_model
 model = load_model('output/model_28_08_2021_20_44_convnet2_lr0.0001_final.hdf5')
 model.summary()
 
-#img_path = 'C:/Users/AmbruszkiewM/PycharmProjects/klasyfikator_tf/images/test/surfboard/44.channel-islands-fish-surfboard-futures-blue_a.jpg'
 
-#img_path = 'C:/Users/AmbruszkiewM/PycharmProjects/klasyfikator_tf/images/test/skateboard/651.7_Sm_Pv_Skateboard_B.jpg'
-
-img_path = 'C:/Users/AmbruszkiewM/PycharmProjects/klasyfikator_tf/images/test/surfboard/41.devil.jpg'
+img_path = '/path/to/img.jpg'
 
 from tensorflow.keras.preprocessing import image
 import numpy as np

@@ -1,7 +1,6 @@
 from datetime import datetime
 import pandas as pd
 import argparse
-import pickle
 import os
 import warnings
 import plotly.graph_objects as go
@@ -12,9 +11,6 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 import tensorflow as tf
-#import tensorflow.keras.applications.efficientnet as efn
-from tensorflow.keras.applications.resnet50 import ResNet50
-from tensorflow.keras.applications.resnet50 import preprocess_input
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow.keras.optimizers import Adam
@@ -60,8 +56,6 @@ def plot_hist(history, filename):
 
     po.plot(fig, filename=filename, auto_open=False)
 
-#lr_scheduler = tf.keras.callbacks.LearningRateScheduler(lambda epoch: min_lr *)
-
 
 #augumentacja danych
 train_datagen = ImageDataGenerator(
@@ -97,19 +91,10 @@ valid_data = valid_datagen.flow_from_directory(
 )
 
 
-#model = efn.EfficientNetB0(include_top=False, weights='imagenet',
-         #                  input_tensor=None, input_shape=INPUT_SHAPE, classes=2, classifier_activation="sigmoid")
-
-
-#train_data = tf.keras.applications.resnet50.preprocess_input(train_generator)
-#valid_data = tf.keras.applications.resnet50.preprocess_input(valid_generator)
-
-
 architectures = {MODEL_NAME: models.Convnet2}
 architecture = architectures[MODEL_NAME](input_shape=INPUT_SHAPE)
 model = architecture.build()
 
-#model = tf.keras.applications.resnet50.ResNet50(include_top=False, weights=None, input_shape=INPUT_SHAPE, classes=2)
 
 model.compile(
     optimizer=Adam(learning_rate=LEARNING_RATE),
@@ -135,7 +120,6 @@ history = model.fit_generator(
 )
 
 
-#model.save("sk")
 
 print('[INFO] Eksport wykresu do pliku html...')
 filename = os.path.join('output', 'report_' + dt + '.html')
@@ -146,5 +130,5 @@ plot_hist(history, filename=filename)
 print('[INFO] Koniec')
 
 # uruchomienie z konsoli:
-# $ python train.py -e 20
+# $ python train.py -e 100
 
