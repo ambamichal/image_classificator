@@ -23,7 +23,7 @@ INPUT_SHAPE = (224, 224, 3)
 data = ImageDataGenerator(rescale=1. /255.)
 
 generator = data.flow_from_directory(
-    directory=args['dataset'],
+    directory=args['data'],
     target_size=(224, 224),
     batch_size=1,
     class_mode='binary',
@@ -60,7 +60,7 @@ for error in errors:
     print(error)
 
 #uruchomienie
-# python inference.py -d images\test -m output\model_**_**_****.hdf5
+# python inference.py -d images\test -m output\model_28_08_2021_20_44_convnet2_lr0.0001_final.hdf5
 
 
 

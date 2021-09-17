@@ -44,6 +44,12 @@ plt.matshow(first_layer_activation[0, :, :, 5], cmap='viridis')
 plt.show()
 plt.matshow(first_layer_activation[0, :, :, 6], cmap='viridis')
 plt.show()
+plt.matshow(first_layer_activation[0, :, :, 7], cmap='viridis')
+plt.show()
+plt.matshow(first_layer_activation[0, :, :, 8], cmap='viridis')
+plt.show()
+
+
 
 
 #wizualizacja wszystkich kanałów

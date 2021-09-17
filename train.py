@@ -142,9 +142,6 @@ filename = os.path.join('output', 'report_' + dt + '.html')
 plot_hist(history, filename=filename)
 
 
-print('[INFO] Eksport etykiet do pliku...')
-with open(r'output/labels.pickle', 'wb') as file:
-    file.write(pickle.dumps(train_data.class_indices))
 
 print('[INFO] Koniec')
 
